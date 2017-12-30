@@ -11,6 +11,8 @@ tzset \- initialize time conversion information
 .PP
 .B void tzfree(timezone_t tz);
 .PP
+.B timezone_t tzdup(timezone_t tz);
+.PP
 .B void tzset(void);
 .PP
 .B cc ... \*-ltz
@@ -45,6 +47,13 @@ This invalidates any
 pointers that
 .B tz
 was used to set.
+.PP
+.I Tzdup
+allocates another time zone object that is identical to the source object, or
+if the duplicate cannot be allocated
+.I tzdup
+returns a null pointer and sets
+.BR errno .
 .PP
 .I Tzset
 acts like

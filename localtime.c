@@ -1398,6 +1398,17 @@ tzfree(timezone_t sp)
   free(sp);
 }
 
+timezone_t
+tzdup(timezone_t source)
+{
+  timezone_t destination = malloc(sizeof *destination);
+  if (!destination) {
+    errno = ENOMEM;
+    return NULL;
+  }
+  *destination = *source;
+  return destination;
+}
 /*
 ** NetBSD 6.1.4 has ctime_rz, but omit it because POSIX says ctime and
 ** ctime_r are obsolescent and have potential security problems that

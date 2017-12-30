@@ -31,6 +31,7 @@ struct tm *localtime_rz(timezone_t restrict, time_t const *restrict,
 time_t mktime_z(timezone_t restrict, struct tm *restrict);
 timezone_t tzalloc(char const *);
 void tzfree(timezone_t);
+timezone_t tzdup(timezone_t);
 # ifdef STD_INSPIRED
 #  if TZ_TIME_T || !defined posix2time_z
 time_t posix2time_z(timezone_t, time_t) ATTRIBUTE_PURE;
