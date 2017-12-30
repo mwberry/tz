@@ -96,6 +96,8 @@ MANDIR = $(TOPDIR)/$(USRSHAREDIR)/man
 # Library functions are put in an archive in LIBDIR.
 LIBDIR = $(TOPDIR)/$(USRDIR)/lib
 
+# Header file goes in:
+INCDIR = $(TOPDIR)/$(USRDIR)/include
 
 # Types to try, as an alternative to time_t.  int64_t should be first.
 TIME_T_ALTERNATIVES = int64_t int32_t uint32_t uint64_t
@@ -507,7 +509,8 @@ install:	all $(DATA) $(REDO) $(MANS)
 			'$(DESTDIR)$(ZDUMPDIR)' '$(DESTDIR)$(ZICDIR)' \
 			'$(DESTDIR)$(LIBDIR)' \
 			'$(DESTDIR)$(MANDIR)/man3' '$(DESTDIR)$(MANDIR)/man5' \
-			'$(DESTDIR)$(MANDIR)/man8'
+			'$(DESTDIR)$(MANDIR)/man8' \
+			'$(DESTDIR)$(INCDIR)'
 		$(ZIC_INSTALL) -l $(LOCALTIME) -p $(POSIXRULES) \
 			-t '$(DESTDIR)$(TZDEFAULT)'
 		cp -f $(TABDATA) '$(DESTDIR)$(TZDIR)/.'
@@ -519,6 +522,7 @@ install:	all $(DATA) $(REDO) $(MANS)
 		cp -f newctime.3 newtzset.3 '$(DESTDIR)$(MANDIR)/man3/.'
 		cp -f tzfile.5 '$(DESTDIR)$(MANDIR)/man5/.'
 		cp -f tzselect.8 zdump.8 zic.8 '$(DESTDIR)$(MANDIR)/man8/.'
+		cp -f libtz.h '$(DESTDIR)$(INCDIR)'
 
 INSTALL:	ALL install date.1
 		mkdir -p '$(DESTDIR)$(BINDIR)' '$(DESTDIR)$(MANDIR)/man1'
